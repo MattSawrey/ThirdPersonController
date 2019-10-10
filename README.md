@@ -1,7 +1,7 @@
 # TPChamAndCharacterController
 A basic template for a third person camera and character controller
 
-##License
+# License
 
 Copyright (C) 2015 Matthew Sawrey
 
