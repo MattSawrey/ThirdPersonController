@@ -91,7 +91,7 @@ public class CameraController : MonoBehaviour {
 		{
 			if(!staticDistanceCam)
 			{
-				heightDistOffset = Mathf.Clamp(heightDistOffset + ((InputManager.Instance.rightJoystickInputValue.x/100f) * distanceSpeed), 0f, 1f);
+				heightDistOffset = Mathf.Clamp(heightDistOffset + ((InputManager.Instance.rightJoystickInputValue.y/100f) * distanceSpeed), 0f, 1f);
 
 				offset = new Vector3(0f,
 				                     camHeightCurve.Evaluate(heightDistOffset) + minHeight,
@@ -99,7 +99,7 @@ public class CameraController : MonoBehaviour {
 			}
 			else if(staticDistanceCam)
 			{
-				heightDistOffset = Mathf.Clamp(heightDistOffset + ((InputManager.Instance.rightJoystickInputValue.x/100f) * distanceSpeed), heightDistOffsetMin, heightDistOffsetMax);
+				heightDistOffset = Mathf.Clamp(heightDistOffset + ((InputManager.Instance.rightJoystickInputValue.y/100f) * distanceSpeed), heightDistOffsetMin, heightDistOffsetMax);
 
 				offset = new Vector3(0f,
 				                     staticCamHeightCurve.Evaluate(heightDistOffset) + minHeight,
@@ -186,10 +186,10 @@ public class CameraController : MonoBehaviour {
 	
 	void OnDestroy()
 	{
-		InputManager.leftJoystickActive -= MoveCamera;
+		InputManager.rightJoystickActive -= MoveCamera;
 		if(camFollow && onlyFollowWhileMoving)
 		{
-			InputManager.rightJoystickActive -= FollowPointOfFocus;
+			InputManager.leftJoystickActive -= FollowPointOfFocus;
 		}
 	}
 	

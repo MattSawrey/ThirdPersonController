@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 	private void CharacterMover()
 	{
 		//Rotation
-		rsInputAngle = Mathf.Atan2(0f - InputManager.Instance.leftJoystickInputValue.x, 0f - InputManager.Instance.leftJoystickInputValue.y);	
+		rsInputAngle = Mathf.Atan2(0f - InputManager.Instance.leftJoystickInputValue.x, 0f - InputManager.Instance.leftJoystickInputValue.y);
 		rotationAngleInput = -rsInputAngle.ConvertToRange(Mathf.PI, -Mathf.PI, 0f, 360f) 
 			+ mainCam.transform.rotation.eulerAngles.y;
 
