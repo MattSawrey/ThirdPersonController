@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
@@ -76,23 +75,23 @@ public class CameraController : MonoBehaviour {
 		}
 		
 		//When the pointOfFocus inputs are correct to move the camera
-		InputManager.cameraMove += MoveCamera;
+		InputManager.rightJoystickActive += MoveCamera;
 
 		//Assign the follow code to when the player is moving
 		if(camFollow && onlyFollowWhileMoving)
 		{
-			InputManager.characterMove += FollowPointOfFocus;
+			InputManager.leftJoystickActive += FollowPointOfFocus;
 		}
 	}
 	//Only gets called when pointOfFocus messes with left stick
 	private void MoveCamera()
 	{
 		//check that the pointOfFocus input is strong enough to warrant cam movement on dist and height
-		if(!InputManager.rsZAxisInput.IsBetween(-minRSSensitivity, minRSSensitivity))
+		if(!InputManager.Instance.rightJoystickInputValue.y.IsBetween(-minRSSensitivity, minRSSensitivity))
 		{
 			if(!staticDistanceCam)
 			{
-				heightDistOffset = Mathf.Clamp(heightDistOffset + ((InputManager.rsZAxisInput/100f) * distanceSpeed), 0f, 1f);
+				heightDistOffset = Mathf.Clamp(heightDistOffset + ((InputManager.Instance.rightJoystickInputValue.x/100f) * distanceSpeed), 0f, 1f);
 
 				offset = new Vector3(0f,
 				                     camHeightCurve.Evaluate(heightDistOffset) + minHeight,
@@ -100,7 +99,7 @@ public class CameraController : MonoBehaviour {
 			}
 			else if(staticDistanceCam)
 			{
-				heightDistOffset = Mathf.Clamp(heightDistOffset + ((InputManager.rsZAxisInput/100f) * distanceSpeed), heightDistOffsetMin, heightDistOffsetMax);
+				heightDistOffset = Mathf.Clamp(heightDistOffset + ((InputManager.Instance.rightJoystickInputValue.x/100f) * distanceSpeed), heightDistOffsetMin, heightDistOffsetMax);
 
 				offset = new Vector3(0f,
 				                     staticCamHeightCurve.Evaluate(heightDistOffset) + minHeight,
@@ -109,9 +108,9 @@ public class CameraController : MonoBehaviour {
 		}
 
 		//check that the pointOfFocus input is strong enough to warrant cam movement on xRotationOffset
-		if(!InputManager.rsXAxisInput.IsBetween(-minRSSensitivity, minRSSensitivity))
+		if(!InputManager.Instance.rightJoystickInputValue.x.IsBetween(-minRSSensitivity, minRSSensitivity))
 		{
-			xRotationOffset += InputManager.rsXAxisInput * rotationSpeed;
+			xRotationOffset += InputManager.Instance.rightJoystickInputValue.x * rotationSpeed;
 		}
 	}
 		
@@ -187,10 +186,10 @@ public class CameraController : MonoBehaviour {
 	
 	void OnDestroy()
 	{
-		InputManager.cameraMove -= MoveCamera;
+		InputManager.leftJoystickActive -= MoveCamera;
 		if(camFollow && onlyFollowWhileMoving)
 		{
-			InputManager.characterMove -= FollowPointOfFocus;
+			InputManager.rightJoystickActive -= FollowPointOfFocus;
 		}
 	}
 	
