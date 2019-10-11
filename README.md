@@ -1,6 +1,10 @@
 # ThirdPersonController
 A basic template for a third person camera and character controller
 
+# Requires
+
+- UnityToolbag (https://github.com/MattSawrey/UnityToolbag)
+
 # License
 
 Copyright (C) 2015 Matthew Sawrey
