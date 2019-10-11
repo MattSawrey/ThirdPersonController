@@ -5,6 +5,10 @@ A basic template for a third person camera and character controller
 
 - UnityToolbag (https://github.com/MattSawrey/UnityToolbag)
 
+# Usage
+
+Clone this repository, along with any other required repositories listed above, into your "Assets" folder and you're good to go. Be aware that this repo is unfinished and untested as of yet.
+
 # License
 
 Copyright (C) 2015 Matthew Sawrey
